@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec ts-node server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:test": "ts-node src/database/test/testConnection.ts",
+    "db:migrate": "ts-node src/database/scripts/migrate.ts",
+    "db:rollback": "ts-node src/database/scripts/rollback.ts",
+    "db:seed": "ts-node src/database/scripts/seed.ts",
+    "db:reset": "pnpm db:rollback && pnpm db:migrate && pnpm db:seed"
   },
   "keywords": [],
   "author": "",
