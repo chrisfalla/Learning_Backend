@@ -1,11 +1,2 @@
-import { RegisterDTO } from "../auth.dto";
-
-export function validateRegister(input: RegisterDTO) {
-    const errors: string[] = [];
-
-    
-
-    return {
-        isValid: errors.length === 0,
-    }
-}
+import { z } from "zod";
+import { passwordBlacklist } from ´../../../shared/utils/passwordBlacklist´;
