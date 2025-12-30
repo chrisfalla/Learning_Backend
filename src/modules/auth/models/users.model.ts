@@ -2,7 +2,16 @@ import pool from "../../../database/config/database";
 
 export const usersModel = {
     async findByEmail(email: string) {
+        const query = `
+        SELECT id, email, password_hash, first_name, last_name, created_at
+        FROM users
+        WHERE email = $1
+        LIMIT 1
+        `;
 
+        const result = await pool.query(query, [email]);
+        
+        return result.rows[0] || null;
     },
 
     async createUser(data: {
