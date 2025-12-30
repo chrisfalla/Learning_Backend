@@ -4,16 +4,16 @@ export const up = async () => {
   const client = await pool.connect();
   try {
     await client.query(`
-      CREATE TABLE IF NOT EXISTS marcas (
+      CREATE TABLE IF NOT EXISTS brands (
         id SERIAL PRIMARY KEY,
-        nombre VARCHAR(100) UNIQUE NOT NULL,
-        descripcion TEXT,
+        name VARCHAR(100) UNIQUE NOT NULL,
+        description TEXT,
         logo_url VARCHAR(500),
-        sitio_web VARCHAR(255),
-        activa BOOLEAN DEFAULT TRUE
+        website VARCHAR(255),
+        active BOOLEAN DEFAULT TRUE
       )
     `);
-    console.log('✅ Tabla marcas creada');
+    console.log('✅ Brands table created');
   } finally {
     client.release();
   }
@@ -22,8 +22,8 @@ export const up = async () => {
 export const down = async () => {
   const client = await pool.connect();
   try {
-    await client.query('DROP TABLE IF EXISTS marcas CASCADE');
-    console.log('✅ Tabla marcas eliminada');
+    await client.query('DROP TABLE IF EXISTS brands CASCADE');
+    console.log('✅ Brands table dropped');
   } finally {
     client.release();
   }
