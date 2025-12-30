@@ -1,29 +1,29 @@
 import { z } from "zod";
 import { passwordBlacklist } from "../../../shared/utils/security/password-blacklist";
 export const registerSchema = z.object({
-    nombre: z
+    firstName: z
         .string()
-        .min(2, "el nombre debe tener minimo 2 caracteres")
-        .max(100, "el nommbre no puede superar los 100 cara "),
+        .min(2, "first name must have at least 2 characters")
+        .max(100, "first name cannot exceed 100 characters"),
 
-    apellido: z
+    lastName: z
         .string()
-        .min(2, "el apellido debe tener minimo 2 caracteres")
-        .max(100, "el apellido no puede superar los 100 caracteres"),
+        .min(2, "last name must have at least 2 characters")
+        .max(100, "last name cannot exceed 100 characters"),
 
-    correo: z
+    email: z
         .string()
-        .email("el correo no es valido, virifique nuevamente")
-        .max(200, "el correo es demasiado largo"),
+        .email("email is not valid, please check again")
+        .max(200, "email is too long"),
 
-    contraseña: z
+    password: z
         .string()
-        .min(8, "lacontraseña debe incluir minimo 8 caracteres")
-        .regex(/[A-Z]/, "debe incluir al menos una letra mayuscula")
-        .regex(/[a-z]/, "debe incluir al menos una letra minuscula")
-        .regex(/[0-9]/, "debe incluir al menos un numero")
+        .min(8, "password must include at least 8 characters")
+        .regex(/[A-Z]/, "must include at least one uppercase letter")
+        .regex(/[a-z]/, "must include at least one lowercase letter")
+        .regex(/[0-9]/, "must include at least one number")
         .refine(
             (value) => !passwordBlacklist.includes(value),
-            { message: "la contraseña es demasiado comun y no es segura" }
+            { message: "password is too common and not secure" }
         ),
 });

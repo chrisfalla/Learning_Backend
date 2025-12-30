@@ -1,15 +1,15 @@
 export interface RegisterDTO {
-    nombre: string,
-    apellido: string,
-    correo: string,
-    contraseña: string
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
 };
 
 export interface LoginDTO {
-    correo: string,
-    contraseña: string
+    email: string,
+    password: string
 };
 
 export interface GoogleAuthDTO {
-    tokenGoogle: string
+    googleToken: string
 };
