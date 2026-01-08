@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { passwordBlacklist } from "../../../shared/utils/security/password-blacklist";
-export const registerSchema = z.object({
+export const registerValidator = z.object({
     firstName: z
         .string()
         .min(2, "first name must have at least 2 characters")
