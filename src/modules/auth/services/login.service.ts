@@ -30,7 +30,11 @@ export const loginService = async (data: {
 
   // 4. Login exitoso
   return {
-    id: user.id,
-    email: user.email,
+    accesToken: "jwt",
+    user: {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    }
   };
 };
