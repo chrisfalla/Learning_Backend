@@ -1,4 +1,4 @@
-import jwt, { JwtPayload as JwtLibPayload } from "jsonwebtoken";
+import jwt, { JwtPayload as JwtLibPayload, Secret, SignOptions } from "jsonwebtoken";
 
 const _JWT_SECRET = process.env.JWT_SECRET;
 const _JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
@@ -7,8 +7,9 @@ if (!_JWT_SECRET || !_JWT_EXPIRES_IN) {
   throw new Error("JWT configuration missing");
 }
 
-const JWT_SECRET: string = _JWT_SECRET;
-const JWT_EXPIRES_IN: string = _JWT_EXPIRES_IN;
+const JWT_SECRET: Secret = _JWT_SECRET;
+const JWT_EXPIRES_IN: SignOptions["expiresIn"] =
+  _JWT_EXPIRES_IN as unknown as SignOptions["expiresIn"];
 
 export interface JwtPayload {
   id: number;
